@@ -3,6 +3,12 @@
            https://api.github.com/users/<your name>
 */
 
+axios.get('https://api.github.com/users/finalboss')
+.then(response => {
+
+
+}).catch(err => {  } )
+
 /* Step 2: Inspect and study the data coming back, this is YOUR 
    github info! You will need to understand the structure of this 
    data in order to use it to build your component function 
@@ -46,6 +52,8 @@ const followersArray = [];
 
 */
 
+
+
 /* List of LS Instructors Github username's: 
   tetondan
   dustinmyers
@@ -53,3 +61,21 @@ const followersArray = [];
   luishrd
   bigknell
 */
+
+
+function finalBoss(obj){
+
+  //create elements
+
+  let card = document.createElement('div');
+  let imgFB = document.createElement('img');
+  let cardInf = document.createElement('div');
+  let nameTitle = document.createElement('h3');
+  let userName = document.createElement('p');
+  let profile = document.createElement('p');
+  let aLink = document.createElement('a');
+  let followers = document.createElement('p');
+  let following = document.createElement('p');
+
+
+}
