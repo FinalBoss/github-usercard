@@ -94,7 +94,7 @@ function finalBoss(obj){
   cardInf.appendChild(userName);
   cardInf.appendChild(location);
   cardInf.appendChild(profile);
-  profile.appendChild(aLink);
+  cardInf.appendChild(aLink);
   cardInf.appendChild(followers);
   cardInf.appendChild(following);
   cardInf.appendChild(bio);
@@ -106,8 +106,9 @@ function finalBoss(obj){
   nameTitle.textContent = obj.name
   userName.textContent = obj.login
   location.textContent = `Location:  ${obj.location}`
-  profile.textContent = `Profile:` 
-  aLink.href = obj.html_url
+  profile.textContent = `Profile:`
+  aLink.textContent = obj.html_url 
+  aLink.href = obj.html_url 
   followers.textContent = `Followers: ${obj.followers}`
   following.textContent = `Following: ${obj.following}`
   bio.textContent = `Bio  ${obj.bio}`
@@ -132,15 +133,36 @@ axios.get('https://api.github.com/users/finalboss')
 
   console.log('Alls Well', response.data)
 
-  response.data.forEach(newCard => {
+
   
-    const finalBCard = finalBoss(newCard)
+    const finalBCard = finalBoss(response.data)
     cardEntry.appendChild(finalBCard)
 
-  });
+ 
 
 }).catch(err => {
 
   console.log('Oops!', err)
 
 })
+
+
+followersArray.forEach(newCards => {
+
+  axios.get(`https://api.github.com/users/${newCards}`)
+  .then (response => {
+
+    console.log('Good to Go!', response)
+
+    const tlCards = finalBoss(response.data)
+    cardEntry.appendChild(tlCards)
+
+
+  }).catch(err => {
+
+    console.log('Oh snap, you failed!', err)
+  })
+
+
+})
+
