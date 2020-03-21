@@ -105,12 +105,12 @@ function finalBoss(obj){
   imgFB.src = obj.avatar_url
   nameTitle.textContent = obj.name
   userName.textContent = obj.login
-  location.textContent = "Location: " + obj.location
-  profile.textContent = "Profile: "
+  location.textContent = `Location:  ${obj.location}`
+  profile.textContent = `Profile:` 
   aLink.href = obj.html_url
-  followers.textContent = "Followers: " + obj.followers
-  following.textContent = "Following: " + obj.following
-  bio.textContent = "Bio " + obj.bio
+  followers.textContent = `Followers: ${obj.followers}`
+  following.textContent = `Following: ${obj.following}`
+  bio.textContent = `Bio  ${obj.bio}`
 
 
 
