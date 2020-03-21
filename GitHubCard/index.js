@@ -111,7 +111,7 @@ function finalBoss(obj){
   aLink.href = obj.html_url 
   followers.textContent = `Followers: ${obj.followers}`
   following.textContent = `Following: ${obj.following}`
-  bio.textContent = `Bio  ${obj.bio}`
+  bio.textContent = `Bio:  ${obj.bio}`
 
 
 
