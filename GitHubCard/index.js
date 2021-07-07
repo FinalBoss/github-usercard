@@ -3,6 +3,7 @@
            https://api.github.com/users/<your name>
 */
 
+
 /* Step 2: Inspect and study the data coming back, this is YOUR 
    github info! You will need to understand the structure of this 
    data in order to use it to build your component function 
@@ -24,7 +25,11 @@
           user, and adding that card to the DOM.
 */
 
-const followersArray = [];
+const followersArray = [ 'tetondan',
+  'dustinmyers',
+  'justsml',
+  'luishrd',
+  'bigknell'];
 
 /* Step 3: Create a function that accepts a single object as its only argument,
           Using DOM methods and properties, create a component that will return the following DOM element:
@@ -46,6 +51,8 @@ const followersArray = [];
 
 */
 
+
+
 /* List of LS Instructors Github username's: 
   tetondan
   dustinmyers
@@ -53,3 +60,109 @@ const followersArray = [];
   luishrd
   bigknell
 */
+
+
+function finalBoss(obj){
+
+  //create elements
+
+  let card = document.createElement('div');
+  let imgFB = document.createElement('img');
+  let cardInf = document.createElement('div');
+  let nameTitle = document.createElement('h3');
+  let userName = document.createElement('p');
+  let location = document.createElement('p');
+  let profile = document.createElement('p');
+  let aLink = document.createElement('a');
+  let followers = document.createElement('p');
+  let following = document.createElement('p');
+  let bio = document.createElement('p');
+
+//Add Class
+
+  card.classList.add('card')
+  cardInf.classList.add('card-info')
+  nameTitle.classList.add('name')
+  userName.classList.add('username')
+
+
+  //Append elements
+
+  card.appendChild(imgFB);
+  card.appendChild(cardInf);
+  cardInf.appendChild(nameTitle);
+  cardInf.appendChild(userName);
+  cardInf.appendChild(location);
+  cardInf.appendChild(profile);
+  cardInf.appendChild(aLink);
+  cardInf.appendChild(followers);
+  cardInf.appendChild(following);
+  cardInf.appendChild(bio);
+
+
+  //Create
+
+  imgFB.src = obj.avatar_url
+  nameTitle.textContent = obj.name
+  userName.textContent = obj.login
+  location.textContent = `Location:  ${obj.location}`
+  profile.textContent = `Profile:`
+  aLink.textContent = obj.html_url 
+  aLink.href = obj.html_url 
+  followers.textContent = `Followers: ${obj.followers}`
+  following.textContent = `Following: ${obj.following}`
+  bio.textContent = `Bio:  ${obj.bio}`
+
+
+
+
+  //return element
+
+
+  return card
+
+
+}
+
+
+
+const cardEntry = document.querySelector('.cards')
+
+axios.get('https://api.github.com/users/finalboss')
+.then(response => {
+
+  console.log('Alls Well', response.data)
+
+
+  
+    const finalBCard = finalBoss(response.data)
+    cardEntry.appendChild(finalBCard)
+
+ 
+
+}).catch(err => {
+
+  console.log('Oops!', err)
+
+})
+
+
+followersArray.forEach(newCards => {
+
+  axios.get(`https://api.github.com/users/${newCards}`)
+  .then (response => {
+
+    console.log('Good to Go!', response)
+
+    const tlCards = finalBoss(response.data)
+    cardEntry.appendChild(tlCards)
+
+
+  }).catch(err => {
+
+    console.log('Oh snap, you failed!', err)
+  })
+
+
+})
+
